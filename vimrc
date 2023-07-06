@@ -259,3 +259,8 @@ endfunction
 nmap gd :call <SID>goto_tag("Definition")<CR>
 nmap gi :call <SID>goto_tag("Implementation")<CR>
 nmap gr :call <SID>goto_tag("References")<CR>
+
+  nnoremap <S-Up> :resize -1<CR>
+  nnoremap <S-Down> :resize +1<CR>
+  nnoremap <S-Right> :vertical resize -1<CR>
+  nnoremap <S-Left> :vertical resize +1<CR>
