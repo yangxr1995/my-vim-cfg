@@ -273,4 +273,5 @@ set imcmdline
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-language messages zh_CN.utf-8
+nmap <silent> <Leader>tt <Plug>TranslateW
+vmap <silent> <Leader>t <Plug>TranslateWV
