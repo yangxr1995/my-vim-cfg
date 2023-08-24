@@ -260,7 +260,17 @@ nmap gd :call <SID>goto_tag("Definition")<CR>
 nmap gi :call <SID>goto_tag("Implementation")<CR>
 nmap gr :call <SID>goto_tag("References")<CR>
 
-  nnoremap <S-Up> :resize -1<CR>
-  nnoremap <S-Down> :resize +1<CR>
-  nnoremap <S-Right> :vertical resize -1<CR>
-  nnoremap <S-Left> :vertical resize +1<CR>
+nnoremap <S-Up> :resize -1<CR>
+nnoremap <S-Down> :resize +1<CR>
+nnoremap <S-Right> :vertical resize -1<CR>
+nnoremap <S-Left> :vertical resize +1<CR>
+
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030
+set imcmdline
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+language messages zh_CN.utf-8
