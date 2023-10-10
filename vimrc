@@ -1,6 +1,6 @@
 set nocompatible
 set cursorline      " 显示下划线
-set nu
+" set nu
 
 set completeopt=
 syntax on	" 支持语法高亮
@@ -13,6 +13,11 @@ set backspace=2		" 修正backspce的行为
 colorscheme gruvbox
 set t_Co=256
 set background=dark
+
+nnoremap <S-Up> :resize -1<CR>
+nnoremap <S-Down> :resize +1<CR>
+nnoremap <S-Right> :vertical resize -1<CR>
+nnoremap <S-Left> :vertical resize +1<CR>
 
 set nobackup
 set noswapfile
@@ -123,19 +128,19 @@ set signcolumn=yes
 " else
 "   inoremap <silent><expr> <c-@> coc#refresh()
 " endif
-" 
+
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" 
+
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" 
-" " Use K to show documentation in preview window
+
+" Use K to show documentation in preview window
 " nnoremap <silent> K :call ShowDocumentation()<CR>
 " 
 " function! ShowDocumentation()
@@ -145,11 +150,11 @@ nmap <silent> gr <Plug>(coc-references)
 "     call feedkeys('K', 'in')
 "   endif
 " endfunction
-" 
-" " Highlight the symbol and its references when holding the cursor
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-" 
-" " Symbol renaming
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming
 " nmap <leader>rn <Plug>(coc-rename)
 " 
 " " Formatting selected code
@@ -175,8 +180,8 @@ nmap <silent> gr <Plug>(coc-references)
 " nmap <leader>as  <Plug>(coc-codeaction-source)
 " " Apply the most preferred quickfix action to fix diagnostic on the current line
 " nmap <leader>qf  <Plug>(coc-fix-current)
-" 
-" " Remap keys for applying refactor code actions
+
+" Remap keys for applying refactor code actions
 " nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
 " xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 " nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
@@ -194,8 +199,8 @@ nmap <silent> gr <Plug>(coc-references)
 " omap ic <Plug>(coc-classobj-i)
 " xmap ac <Plug>(coc-classobj-a)
 " omap ac <Plug>(coc-classobj-a)
-" 
-" " Remap <C-f> and <C-b> to scroll float windows/popups
+
+" Remap <C-f> and <C-b> to scroll float windows/popups
 " if has('nvim-0.4.0') || has('patch-8.2.0750')
 "   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 "   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -218,14 +223,14 @@ nmap <silent> gr <Plug>(coc-references)
 " 
 " " Add `:OR` command for organize imports of the current buffer
 " command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-" 
-" " Add (Neo)Vim's native statusline support
-" " NOTE: Please see `:h coc-status` for integrations with external plugins that
-" " provide custom statusline: lightline.vim, vim-airline
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" 
-" " Mappings for CoCList
-" " Show all diagnostics
+
+" Add (Neo)Vim's native statusline support
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings for CoCList
+" Show all diagnostics
 " nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " " Manage extensions
 " nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
@@ -260,6 +265,12 @@ nmap gd :call <SID>goto_tag("Definition")<CR>
 nmap gi :call <SID>goto_tag("Implementation")<CR>
 nmap gr :call <SID>goto_tag("References")<CR>
 
+nmap gl :CocList -I symbols<CR>
+
+" 禁用vim 自带popup menu
+" set completeopt-=menu
+" set pumheight=10
+
 nnoremap <S-Up> :resize -1<CR>
 nnoremap <S-Down> :resize +1<CR>
 nnoremap <S-Right> :vertical resize -1<CR>
@@ -275,3 +286,4 @@ source $VIMRUNTIME/menu.vim
 
 nmap <silent> <Leader>tt <Plug>TranslateW
 vmap <silent> <Leader>t <Plug>TranslateWV
+
