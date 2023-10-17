@@ -22,9 +22,9 @@ function cfg()
 	rm -rf  ~/.vim/*
 	mkdir -p ~/.vim/pack/plugins/start/
 
-	cp -rfd ./plug/vim/* ~/.vim/
+	cp -rfd vim/* ~/.vim/
 
-	cp -f ./plug/vimrc ~/.vimrc
+	cp -f ./vimrc ~/.vimrc
 
 	tar xf dl/coc.nvim-0.0.82.tar.gz -C ~/.vim/pack/plugins/start/
 	echo "进入vim，执行 :CocInstall coc-clangd"
