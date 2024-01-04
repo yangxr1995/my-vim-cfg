@@ -67,12 +67,6 @@ nmap ss <Plug>(easymotion-s2)
 set nowritebackup
 set updatetime=300
 set signcolumn=yes
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 autocmd CursorHold * silent call CocActionAsync('highlight')
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
@@ -89,6 +83,12 @@ function! s:goto_tag(tagkind) abort
       \ }, 't')
   endif
 endfunction
+nmap gd :call <SID>goto_tag("Definition")<CR>
+nmap gi :call <SID>goto_tag("Implementation")<CR>
+nmap gr :call <SID>goto_tag("References")<CR>
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 " 禁用vim 自带popup menu
 " set completeopt-=menu
 " set pumheight=10
@@ -156,3 +156,6 @@ noremap PP :PreviewClose<cr><cr>
 
 " nmap gu :AsyncRun gtags --incremental<CR>
 " nmap gf :AsyncRun gtags --incremental -f ./gtags-list<CR>
+"---------------------------------------------------------
+
+
