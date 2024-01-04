@@ -50,7 +50,7 @@ nmap <F1> :cclose<CR>zz
 nmap * *N:set hls<CR>
 nmap ** :set nohls<CR>
 
-nmap <Esc><Esc> :qall<CR>
+nmap <Esc><Esc><Esc><Esc> :qall<CR>
 
 let g:termdebug_wide=1
 
@@ -151,5 +151,37 @@ nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 "---------------------------------------------------------
 
 " ctrlp
-let g:ctrlp_user_command = 'find %s -type f'
+" let g:ctrlp_user_command = 'find %s -type f'
 
+" Leaderf
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+"" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_ShortcutF = "<leader>ff"
+
+"" Show icons, icons are shown by default
+let g:Lf_ShowDevIcons = 1
+" For GUI vim, the icon font can be specify like this, for example
+let g:Lf_DevIconsFont = "DroidSansM Nerd Font Mono"
+"" If needs
+set ambiwidth=double
+
+noremap <leader>ff :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
+noremap <leader>fg :<C-U><C-R>=printf("Leaderf gtags %s", "")<CR><CR>
+
+"" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 1
+"let g:Lf_Gtagslabel = 'native-pygments'
