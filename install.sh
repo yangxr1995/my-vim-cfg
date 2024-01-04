@@ -14,7 +14,7 @@ function install_tools()
 {
 	apt install -y nodejs npm clangd  bear tmux vim  \
 			universal-ctags libgraph-easy-perl  \
-			python2 python3 gdb wireguard  resolvconf
+			python2 python3 gdb wireguard  resolvconf ripgrep
 
 	tar xf ./dl/global-6.6.11.tar.gz -C ./
 	cd global-6.6.11
