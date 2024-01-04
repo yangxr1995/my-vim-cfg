@@ -50,6 +50,8 @@ nmap <F1> :cclose<CR>zz
 nmap * *N:set hls<CR>
 nmap ** :set nohls<CR>
 
+nmap <Esc><Esc> :qall<CR>
+
 let g:termdebug_wide=1
 
 " NERDTree config
@@ -125,39 +127,29 @@ noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 noremap pp :PreviewQuickfix<cr><cr>
 noremap PP :PreviewClose<cr><cr>
 
-" 废弃
-
 " gtags
-" set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
-" " gtags.vim 设置项
-" let GtagsCscope_Auto_Load = 1
-" let CtagsCscope_Auto_Map = 1
-" let GtagsCscope_Quiet = 1
+set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+" gtags.vim 设置项
+let GtagsCscope_Auto_Load = 1
+let CtagsCscope_Auto_Map = 1
+let GtagsCscope_Quiet = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" if has("cscope")
-" 	set csto=0 " 先查找tag文件，再查找cscope.out文件
-" 	set cst
-" "	set nocsverb
-" 	" add any database in current directory
-" 	if filereadable("GTAGS")
-" 		cs add GTAGS
-" 	endif
-" "	set csverb
-" 	nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-" 	nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-" 	nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-" 	nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-" 	nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-" 	nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-" 	nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-" 	nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-" endif
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " nmap gu :AsyncRun gtags --incremental<CR>
 " nmap gf :AsyncRun gtags --incremental -f ./gtags-list<CR>
 "---------------------------------------------------------
 
+" ctrlp
+let g:ctrlp_user_command = 'find %s -type f'
 

@@ -12,20 +12,21 @@
 let s:windows = has('win32') || has('win64') || has('win16') || has('win95')
 let s:cscope_native = get(g:, 'gutentags_plus_native', 1)
 
-if v:version >= 800
-	if has('nvim-0.9.0') == 0
-		set cscopequickfix=s+,c+,d+,i+,t+,e+,g+,f+,a+
-	else
-		let s:cscope_native = 0
-	endif
-else
-	set cscopequickfix=s+,c+,d+,i+,t+,e+,g+,f+
-endif
+" if v:version >= 800
+" 	if has('nvim-0.9.0') == 0
+" 		set cscopequickfix=s+,c+,d+,i+,t+,e+,g+,f+,a+
+" 	else
+" 		let s:cscope_native = 0
+" 	endif
+" else
+" 	set cscopequickfix=s+,c+,d+,i+,t+,e+,g+,f+
+" endif
 
-" let s:cscope_native = 0
+" set cscopequickfix=s+,c+,d+,i+,t+,e+,g+,f+
+
+let s:cscope_native = 0
 
 let g:gutentags_auto_add_gtags_cscope = 0
-
 
 "----------------------------------------------------------------------
 " strip heading and ending spaces 
@@ -844,18 +845,18 @@ nnoremap <silent> <expr> <Plug>GscopeFindInclude    <SID>FindCwordCmd('GscopeFin
 nnoremap <silent> <expr> <Plug>GscopeFindAssign     <SID>FindCwordCmd('GscopeFind a', 0)
 nnoremap <silent> <expr> <Plug>GscopeFindCtag       <SID>FindCwordCmd('GscopeFind z', 0)
 
-if get(g:, 'gutentags_plus_nomap', 0) == 0
-	nmap <silent> <leader>cs <Plug>GscopeFindSymbol
-	nmap <silent> <leader>cg <Plug>GscopeFindDefinition
-	nmap <silent> <leader>cc <Plug>GscopeFindCallingFunc
-	nmap <silent> <leader>ct <Plug>GscopeFindText
-	nmap <silent> <leader>ce <Plug>GscopeFindEgrep
-	nmap <silent> <leader>cf <Plug>GscopeFindFile
-	nmap <silent> <leader>ci <Plug>GscopeFindInclude
-	nmap <silent> <leader>cd <Plug>GscopeFindCalledFunc
-	nmap <silent> <leader>ca <Plug>GscopeFindAssign
-	nmap <silent> <leader>cz <Plug>GscopeFindCtag
-	nmap <silent> <leader>ck :GscopeKill<cr>
-endif
+" if get(g:, 'gutentags_plus_nomap', 0) == 0
+" 	nmap <silent> <leader>cs <Plug>GscopeFindSymbol
+" 	nmap <silent> <leader>cg <Plug>GscopeFindDefinition
+" 	nmap <silent> <leader>cc <Plug>GscopeFindCallingFunc
+" 	nmap <silent> <leader>ct <Plug>GscopeFindText
+" 	nmap <silent> <leader>ce <Plug>GscopeFindEgrep
+" 	nmap <silent> <leader>cf <Plug>GscopeFindFile
+" 	nmap <silent> <leader>ci <Plug>GscopeFindInclude
+" 	nmap <silent> <leader>cd <Plug>GscopeFindCalledFunc
+" 	nmap <silent> <leader>ca <Plug>GscopeFindAssign
+" 	nmap <silent> <leader>cz <Plug>GscopeFindCtag
+" 	nmap <silent> <leader>ck :GscopeKill<cr>
+" endif
 
 
