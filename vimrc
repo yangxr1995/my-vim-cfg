@@ -104,6 +104,8 @@ let g:gutentags_plus_switch = 1
 " let g:gutentags_trace = 1
 let g:gutentags_auto_add_gtags_cscope = 1
 let g:gutentags_plus_nomap = 1
+let g:gutentags_generate_on_write = 0
+nmap <F1> :GutentagsUpdate<CR>zz
 " 找符号
 noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
 " 找符号的定义 
