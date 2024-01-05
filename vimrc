@@ -185,3 +185,14 @@ noremap <leader>fg :<C-U><C-R>=printf("Leaderf gtags %s", "")<CR><CR>
 "" should use `Leaderf gtags --update` first
 let g:Lf_GtagsAutoGenerate = 1
 "let g:Lf_Gtagslabel = 'native-pygments'
+
+" minibufexpl
+noremap <leader>1 :b1<CR>
+noremap <leader>2 :b2<CR>
+noremap <leader>3 :b3<CR>
+noremap <leader>4 :b4<CR>
+noremap <leader>5 :b5<CR>
+noremap <leader><Space> :MBEbn<CR>
+noremap <leader><Tab><Space> :MBEbp<CR>
+
+
