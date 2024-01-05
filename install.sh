@@ -16,6 +16,12 @@ function install_tools()
 			universal-ctags libgraph-easy-perl  \
 			python2 python3 gdb wireguard  resolvconf ripgrep
 
+	which ripgrep
+	if [ $? -ne 0 ]; then
+		curl -LO  https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
+		dpkg -i ./ripgrep_12.1.1_amd64.deb	
+	fi
+
 	tar xf ./dl/global-6.6.11.tar.gz -C ./
 	cd global-6.6.11
 	./configure --prefix=/usr && make -j4 && make install
