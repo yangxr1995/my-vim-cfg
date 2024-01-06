@@ -82,7 +82,7 @@ function! gutentags#get_cachefile(root_dir, filename) abort
         " Put the tag file in the cache dir instead of inside the
         " project root.
         let l:tag_path = g:gutentags_cache_dir . '/' .
-                    \tr(l:tag_path, '\/: ', '---_')
+                    \tr(l:tag_path, '\/: ', '____')
         let l:tag_path = substitute(l:tag_path, '/\-', '/', '')
         let l:tag_path = substitute(l:tag_path, '[\-_]*$', '', '')
     endif

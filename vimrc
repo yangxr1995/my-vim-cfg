@@ -50,8 +50,6 @@ nmap <F1> :cclose<CR>zz
 nmap * *N:set hls<CR>
 nmap ** :set nohls<CR>
 
-nmap <Esc><Esc><Esc><Esc> :qall<CR>
-
 let g:termdebug_wide=1
 
 " NERDTree config
@@ -101,7 +99,7 @@ let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 " 同时开启 ctags 和 gtags 支持：
 let g:gutentags_modules = ['gtags_cscope']
 " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_cache_dir = expand('~/.cache/LeaderF/gtags')
 let g:gutentags_plus_switch = 1
 " let g:gutentags_trace = 1
 let g:gutentags_auto_add_gtags_cscope = 1
@@ -150,9 +148,6 @@ nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " nmap gf :AsyncRun gtags --incremental -f ./gtags-list<CR>
 "---------------------------------------------------------
 
-" ctrlp
-" let g:ctrlp_user_command = 'find %s -type f'
-
 " Leaderf
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
@@ -183,8 +178,7 @@ noremap <leader>fr :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
 noremap <leader>fg :<C-U><C-R>=printf("Leaderf gtags %s", "")<CR><CR>
 
 "" should use `Leaderf gtags --update` first
-let g:Lf_GtagsAutoGenerate = 1
-"let g:Lf_Gtagslabel = 'native-pygments'
+"let g:Lf_GtagsAutoUpdate = 1
 
 " minibufexpl
 noremap <leader>1 :b1<CR>
@@ -194,5 +188,4 @@ noremap <leader>4 :b4<CR>
 noremap <leader>5 :b5<CR>
 noremap <leader><Space> :MBEbn<CR>
 noremap <leader><Tab><Space> :MBEbp<CR>
-
 
