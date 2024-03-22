@@ -14,10 +14,48 @@ function red(){
 
 function install_tools()
 {
+	cat > /etc/apt/sources.list << EOF
+deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
+# Needs 'sudo add-apt-repository ppa:ubuntu-toolchain-r/test' for libstdc++ with C++20 support
+# 17
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-17 main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-17 main
+# 18
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-18 main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-18 main
+EOF
+
+	wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+
+	apt-update -y
+
  	apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
  	    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
  	    libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
- 	    python3-dev git gcc g++ make automake libssl-dev flex bison clangd-10
+ 	    python3-dev git gcc g++ make automake libssl-dev flex bison clangd-18 nodejs \
+		libssl1.0-dev wireguard resolvconf
+
+	apt-get install nodejs-dev -y
+	apt-get install node-gpy -y
+	apt-get install npm -y
+
+	npm config set registry https://registry.npmmirror.com
+	npm config set strict-ssl false
+	npm install -g n
+	n 18
+
  
  	mkdir build -p
  
