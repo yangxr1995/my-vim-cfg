@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TOPDIR=$(pwd)
+
 function blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
@@ -12,19 +14,63 @@ function red(){
 
 function install_tools()
 {
-	apt install -y nodejs npm clangd  bear tmux vim  \
-			universal-ctags libgraph-easy-perl  \
-			python2 python3 gdb wireguard  resolvconf ripgrep
+ 	apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
+ 	    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+ 	    libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
+ 	    python3-dev git gcc g++ make automake libssl-dev flex bison clangd-10
+ 
+ 	mkdir build -p
+ 
+ 	dpkg -i dl/ripgrep_12.1.1_amd64.deb
+ 
+ 	tar xf dl/universal-ctags-6.1.0.tar.gz  -C build
+ 	cd build/universal-ctags-6.1.0/
+ 	./configure --prefix=/usr/local/ctags
+ 	make -j5 && make install
+ 	cd ${TOPDIR}
+ 
+ 	tar xf ./dl/global-6.6.11.tar.gz -C ./build
+ 	cd build/global-6.6.11
+ 	./configure --prefix=/usr/local/gtags && make -j4 && make install
+ 	cd ${TOPDIR}
+ 
+ 	tar xf dl/axel-2.17.13.tar.xz -C ./build/
+ 	cd build/axel-2.17.13/
+ 	./configure --prefix=/usr/local/axel
+   	make -j5 && make install
+ 	cd ${TOPDIR}
+ 
+ 	tar xf dl/v9.1.0196.tar.gz -C ./build
+	cd build/vim-9.1.0196
 
-	which ripgrep
-	if [ $? -ne 0 ]; then
-		curl -LO  https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
-		dpkg -i ./ripgrep_12.1.1_amd64.deb	
-	fi
+	./configure --prefix=/usr/local/vim9 \
+	--enable-rubyinterp=yes \
+	--with-features=huge \
+	--enable-multibyte \
+	--enable-python3interp=yes \
+	--enable-luainterp=yes \
+	--enable-gui=gtk2 \
+	--enable-cscope	
 
-	tar xf ./dl/global-6.6.11.tar.gz -C ./
-	cd global-6.6.11
-	./configure --prefix=/usr && make -j4 && make install
+	make -j5 && make install
+
+	cd ${TOPDIR}
+
+	tar xf dl/tmux-3.3a.tar.gz -C ./build/
+	cd build/tmux-3.3a/
+	./autogen.sh 
+	./configure --prefix=/usr/local/tmux
+	make -j5 && make install
+	cd ${TOPDIR}
+
+	echo "PATH=/usr/local/gtags/bin:/usr/local/vim9/bin:/usr/local/tmux/bin:/usr/local/axel/bin:/usr/local/ctags/bin:${PATH}" >> /root/.bashrc
+
+#	apt install -y curl nodejs npm clangd-10  bear tmux vim  \
+#			libgraph-easy-perl  \
+#			python2 python3 gdb wireguard  resolvconf
+
+	exit 0
+
 }
 
 function cfg()
