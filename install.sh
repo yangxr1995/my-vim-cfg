@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 TOPDIR=$(pwd)
 
 function blue(){
@@ -39,7 +41,7 @@ EOF
 	ln -s /usr/bin/clangd-10 /usr/bin/clangd
 
 	apt-get install nodejs-dev -y
-	apt-get install node-gpy -y
+#	apt-get install node-gpy -y
 	apt-get install npm -y
 
 	npm config set registry https://registry.npmmirror.com
