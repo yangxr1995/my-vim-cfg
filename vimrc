@@ -9,9 +9,14 @@ set tabstop=4		" tab的空格数
 set shiftwidth=4	" 自动缩进的空格数
 set backspace=2		" 修正backspce的行为
 
-colorscheme gruvbox
+" let g:molokai_original = 1
+" let g:rehash256 = 1
+" colorscheme molokai
+
+" colorscheme gruvbox
+colorscheme sonokai
 set t_Co=256
-set background=dark
+" set background=dark
 
 nnoremap <S-Up> :resize -1<CR>
 nnoremap <S-Down> :resize +1<CR>
@@ -189,3 +194,21 @@ noremap <leader>5 :b5<CR>
 noremap <leader><Space> :MBEbn<CR>
 noremap <leader><Tab><Space> :MBEbp<CR>
 
+let g:Lf_RootMarkers = ['.root', '.svn', '.git', '.hg', '.project']
+
+let g:miniBufExplMaxSize = 3
+
+" codeium
+" 手动下载 language_server_linux_x64 : https://github.com/Exafunction/codeium/releases/tag/language-server-v1.8.25
+" 执行 :Codeium Auth
+" 根据url到浏览器进行请求，获得token
+" 填写token，之后主机都可以正常使用AI助理
+let g:codeium_bin = '/usr/bin/language_server_linux_x64'
+let g:codeium_idle_delay = 200
+let g:codeium_render = v:true
+
+let g:codeium_disable_bindings = 1
+imap <script><silent><nowait><expr> <Tab> codeium#Accept()
+imap <Left>   <Cmd>call codeium#CycleCompletions(1)<CR>
+imap <Right>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+imap <Down>   <Cmd>call codeium#Clear()<CR>

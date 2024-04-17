@@ -106,36 +106,19 @@ function cfg()
 	cp -f ./vimrc ~/.vimrc
 
 	tar xf dl/coc.nvim-0.0.82.tar.gz -C ~/.vim/pack/plugins/start/
+
+	echo 'eval "$(tmuxifier init -)"' >> ~/.bashrc
+	echo 'EDITOR=vim' >> ~/.bashrc
+	export "PATH=~/.tmux/plugins/tmuxifier/bin/:$PATH" >> ~/.bashrc
+
+	apt install xsel -y
+
+	mkdir -p ~/.tmux/plugins
+	cp ./tmux/tpm ~/.tmux/plugins -rfd
+
+	echo "安装tmux插件: ~/.tmux/plugins/tmuxifier/bin/tmuxifier install"
 	echo "进入vim，执行 :CocInstall coc-clangd"
 	echo "进入项目，执行 bear -- make"
-
-	cat>/root/.tmux.conf<<EOF
-# 改变快捷键前缀
-# unbind C-b
-# set -g prefix C-a
-
-# 设置终端类型为256色
-set -g default-terminal "xterm-256color"
-set-option -ga terminal-overrides ",*256col*:Tc"
-
-bind | split-window -h -c "#{pane_current_path}"
-bind - split-window -v -c "#{pane_current_path}"
-
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
-
-bind -r H resize-pane -L 5
-bind -r J resize-pane -D 5
-bind -r K resize-pane -U 5
-bind -r L resize-pane -R 5
-
-# Index starts from 1
-set-option -g base-index 1
-setw -g pane-base-index 1   # make pane numbering consistent with windows
-set-option -g mouse on
-EOF
 }
 
 function start_menu()
