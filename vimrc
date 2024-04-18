@@ -212,3 +212,6 @@ imap <script><silent><nowait><expr> <Tab> codeium#Accept()
 imap <Left>   <Cmd>call codeium#CycleCompletions(1)<CR>
 imap <Right>   <Cmd>call codeium#CycleCompletions(-1)<CR>
 imap <Down>   <Cmd>call codeium#Clear()<CR>
+
+set nocul
+hi Normal guibg=NONE ctermbg=NONE
