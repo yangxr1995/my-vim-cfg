@@ -115,6 +115,7 @@ function cfg()
 
 	mkdir -p ~/.tmux/plugins
 	cp ./tmux/tpm ~/.tmux/plugins -rfd
+	cp ./tmux/tmux.conf ~/.tmux.conf
 
 	echo "安装tmux插件: ~/.tmux/plugins/tmuxifier/bin/tmuxifier install"
 	echo "进入vim，执行 :CocInstall coc-clangd"
