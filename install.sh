@@ -107,9 +107,9 @@ function cfg()
 
 	tar xf dl/coc.nvim-0.0.82.tar.gz -C ~/.vim/pack/plugins/start/
 
+	export "PATH=~/.tmux/plugins/tmuxifier/bin/:$PATH" >> ~/.bashrc
 	echo 'eval "$(tmuxifier init -)"' >> ~/.bashrc
 	echo 'EDITOR=vim' >> ~/.bashrc
-	export "PATH=~/.tmux/plugins/tmuxifier/bin/:$PATH" >> ~/.bashrc
 
 	apt install xsel -y
 
@@ -117,7 +117,9 @@ function cfg()
 	cp ./tmux/tpm ~/.tmux/plugins -rfd
 	cp ./tmux/tmux.conf ~/.tmux.conf
 
-	echo "安装tmux插件: ~/.tmux/plugins/tmuxifier/bin/tmuxifier install"
+	echo "安装tmux插件"
+	echo "1. 运行tmux"
+	echo "2. ~/.tmux/plugins/tpm/bin/install_plugins"
 	echo "进入vim，执行 :CocInstall coc-clangd"
 	echo "进入项目，执行 bear -- make"
 }
