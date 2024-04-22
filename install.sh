@@ -107,7 +107,7 @@ function cfg()
 
 	tar xf dl/coc.nvim-0.0.82.tar.gz -C ~/.vim/pack/plugins/start/
 
-	export "PATH=~/.tmux/plugins/tmuxifier/bin/:$PATH" >> ~/.bashrc
+	export 'PATH=~/.tmux/plugins/tmuxifier/bin/:$PATH' >> ~/.bashrc
 	echo 'eval "$(tmuxifier init -)"' >> ~/.bashrc
 	echo 'EDITOR=vim' >> ~/.bashrc
 
