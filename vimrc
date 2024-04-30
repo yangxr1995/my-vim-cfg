@@ -199,12 +199,8 @@ let g:Lf_RootMarkers = ['.root', '.svn', '.git', '.hg', '.project']
 let g:miniBufExplMaxSize = 3
 
 " codeium
-" 手动下载 language_server_linux_x64 : https://github.com/Exafunction/codeium/releases/tag/language-server-v1.8.25
-" 执行 :Codeium Auth
-" 根据url到浏览器进行请求，获得token
-" 填写token，之后主机都可以正常使用AI助理
 let g:codeium_bin = '/usr/bin/language_server_linux_x64'
-let g:codeium_idle_delay = 200
+let g:codeium_idle_delay = 50 
 let g:codeium_render = v:true
 
 let g:codeium_disable_bindings = 1
@@ -213,5 +209,12 @@ imap <Left>   <Cmd>call codeium#CycleCompletions(1)<CR>
 imap <Right>   <Cmd>call codeium#CycleCompletions(-1)<CR>
 imap <Down>   <Cmd>call codeium#Clear()<CR>
 
+" let g:codeium_manual = v:true
+
+" You might want to use `CycleOrComplete()` instead of `CycleCompletions(1)`.
+" This will make the forward cycling of suggestions also trigger the first
+" suggestion manually.
+imap <C-l> <Cmd>call codeium#CycleOrComplete()<CR>
+
 set nocul
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
