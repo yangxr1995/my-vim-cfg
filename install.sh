@@ -49,6 +49,19 @@ EOF
 	npm install -g n
 	n 16
  
+	apt install  \
+		libpython3.8 \
+		libpython3.8-dev \
+		libpython3.8-minimal \
+		libpython3.8-stdlib \
+		python3.8 \
+		python3.8-dev \
+		python3.8-minimal \
+
+	apt install python3-distutils -y
+
+	python3.8 ./get-pip.py
+
  	mkdir build -p
  
  	dpkg -i dl/ripgrep_12.1.1_amd64.deb
@@ -73,14 +86,16 @@ EOF
  	tar xf dl/v9.1.0196.tar.gz -C ./build
 	cd build/vim-9.1.0196
 
-	./configure --prefix=/usr/local/vim9 \
-	--enable-rubyinterp=yes \
-	--with-features=huge \
-	--enable-multibyte \
-	--enable-python3interp=yes \
-	--enable-luainterp=yes \
-	--enable-gui=gtk2 \
-	--enable-cscope	
+	./configure --with-features=huge  \
+	--enable-python3interp  \
+	--enable-pythoninterp  \
+	--with-python-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu  \
+	--enable-rubyinterp  \
+	--enable-luainterp  \
+	--enable-perlinterp  \
+	--enable-multibyte  \
+	--enable-cscope  \
+	--prefix=/usr/local/vim9 \
 
 	make -j5 && make install
 
