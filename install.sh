@@ -27,18 +27,30 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted univer
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
+# Needs 'sudo add-apt-repository ppa:ubuntu-toolchain-r/test' for libstdc++ with C++20 support
+# 15
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-15 main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-15 main
+# 16
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-16 main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-16 main
 EOF
+
+	wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
 
  	apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
  	    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev
 
 	apt-get install -y  libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev
 
-	apt-get install -y  python3-dev git gcc g++ make automake libssl-dev flex bison clangd-10 nodejs
+	apt-get install -y  python3-dev git gcc g++ make automake libssl-dev flex bison clangd-19 nodejs
 
 	apt-get install -y libssl1.0-dev wireguard resolvconf libevent-dev
 
-	ln -s /usr/bin/clangd-10 /usr/bin/clangd
+	ln -s /usr/bin/clangd-19 /usr/bin/clangd
 
 	apt-get install nodejs-dev -y
 #	apt-get install node-gpy -y
@@ -47,7 +59,7 @@ EOF
 	npm config set registry https://registry.npmmirror.com
 	npm config set strict-ssl false
 	npm install -g n
-	n 16
+	n 16.18.0
  
 	apt install  \
 		libpython3.8 \
@@ -87,15 +99,16 @@ EOF
 	cd build/vim-9.1.0196
 
 	./configure --with-features=huge  \
-	--enable-python3interp  \
-	--enable-pythoninterp  \
-	--with-python-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu  \
 	--enable-rubyinterp  \
 	--enable-luainterp  \
 	--enable-perlinterp  \
 	--enable-multibyte  \
 	--enable-cscope  \
 	--prefix=/usr/local/vim9 \
+	--with-python3-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu \
+	--enable-python3interp=yes  \
+	--with-python3-command=python3 \
+	--with-python3-stable-abi=3.8
 
 	make -j5 && make install
 
@@ -136,7 +149,9 @@ function cfg()
 	echo "1. 运行tmux"
 	echo "2. ~/.tmux/plugins/tpm/bin/install_plugins"
 	echo "进入vim，执行 :CocInstall coc-clangd"
-	echo "进入项目，执行 bear -- make"
+	echo "进入vim，执行 :CocInstall @yaegassy/coc-pylsp"
+	echo "进入vim，执行 :CocCommand pylsp.builtin.install"
+	echo "进入项目，执行 bear make"
 }
 
 function start_menu()
