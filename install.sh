@@ -41,6 +41,8 @@ EOF
 
 	wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
 
+	apt-get update -y
+
  	apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
  	    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev
 
@@ -70,11 +72,32 @@ EOF
 		python3.8-dev \
 		python3.8-minimal \
 
+	apt remove "python3.6*" "libpython3.6*" -y
+
+ 	mkdir build -p
+
+ 	tar xf dl/v9.1.0196.tar.gz -C ./build
+	cd build/vim-9.1.0196
+
+	./configure --with-features=huge  \
+	--enable-rubyinterp  \
+	--enable-luainterp  \
+	--enable-perlinterp  \
+	--enable-multibyte  \
+	--enable-cscope  \
+	--prefix=/usr/local/vim9 \
+	--with-python3-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu \
+	--enable-python3interp=yes  \
+	--with-python3-command=python3 \
+	--with-python3-stable-abi=3.8
+
+	make -j5 && make install
+
 	apt install python3-distutils -y
 
 	python3.8 ./get-pip.py
 
- 	mkdir build -p
+	pip install python-lsp-server
  
  	dpkg -i dl/ripgrep_12.1.1_amd64.deb
  
@@ -95,23 +118,6 @@ EOF
    	make -j5 && make install
  	cd ${TOPDIR}
  
- 	tar xf dl/v9.1.0196.tar.gz -C ./build
-	cd build/vim-9.1.0196
-
-	./configure --with-features=huge  \
-	--enable-rubyinterp  \
-	--enable-luainterp  \
-	--enable-perlinterp  \
-	--enable-multibyte  \
-	--enable-cscope  \
-	--prefix=/usr/local/vim9 \
-	--with-python3-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu \
-	--enable-python3interp=yes  \
-	--with-python3-command=python3 \
-	--with-python3-stable-abi=3.8
-
-	make -j5 && make install
-
 	cd ${TOPDIR}
 
 	tar xf dl/tmux-3.3a.tar.gz -C ./build/
