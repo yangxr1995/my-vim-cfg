@@ -74,6 +74,10 @@ EOF
 
 	apt remove "python3.6*" "libpython3.6*" -y
 
+	rm -f /usr/bin/python /usr/bin/python3
+	ln -s /usr/bin/python3.8 /usr/bin/python
+	ln -s /usr/bin/python3.8 /usr/bin/python3
+
  	mkdir build -p
 
  	tar xf dl/v9.1.0196.tar.gz -C ./build
